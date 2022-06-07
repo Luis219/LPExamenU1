@@ -22,9 +22,9 @@ horas=[]
 #Ruta enviar
 @app.route('/enviar', methods=['POST'])
 
-#Controlador quer renderiza la página principal
+#Controlador que envia los valores a la tabla
 def enviar():
-    """ Funcion que predice si puede circular o no """
+    """ Por medio de esta funcion se pasan los valores del formulario a la tabla"""
     llamada=request.form.get('numero_llamada')
     placa=request.form.get('placa')
     fecha=request.form.get('fecha')
@@ -37,6 +37,19 @@ def enviar():
 
     return render_template('index.html', nllamadas=nllamadas, placas=placas, fechas=fechas, horas=horas)
 
+#Ruta borrar
+@app.route('/borrar', methods=['POST'])
+
+#Controlador para borrar la tabla
+def borrar():
+    """ Funcion que permite borrar la tabla"""
+   
+    nllamadas.clear()
+    placas.clear()
+    fechas.clear()
+    horas.clear()
+
+    return render_template('index.html', nllamadas=nllamadas, placas=placas, fechas=fechas, horas=horas)
 
 
 #función principal
