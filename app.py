@@ -1,6 +1,8 @@
 
 from markupsafe import escape
 from flask import Flask, abort, render_template, request, flash, url_for, redirect
+from APIHoliday import __is_holiday
+from holidayEcuador import HolidayEcuador
 
 #instancia  de la aplicación web
 app=Flask(__name__, template_folder='templates')
@@ -17,6 +19,7 @@ nllamadas=[]
 placas=[]
 fechas=[]
 horas=[]
+predicciones=[]
 
 
 #Ruta enviar
@@ -30,12 +33,24 @@ def enviar():
     fecha=request.form.get('fecha')
     hora=request.form.get('hora')
 
+
     nllamadas.append(llamada)
     placas.append(placa)
     fechas.append(fecha)
     horas.append(hora)
+    prediccion=""
 
-    return render_template('index.html', nllamadas=nllamadas, placas=placas, fechas=fechas, horas=horas)
+    if __is_holiday(self,fecha, True)==True:
+        prediccion="T"
+        predicciones.append(prediccion)
+        return render_template('index.html', nllamadas=nllamadas, placas=placas, fechas=fechas, horas=horas, predicciones=predicciones)
+    else:
+        prediccion="NT"
+        predicciones.append(prediccion)
+        return render_template('index.html', nllamadas=nllamadas, placas=placas, fechas=fechas, horas=horas, predicciones=predicciones)
+    
+
+    
 
 #Ruta borrar
 @app.route('/borrar', methods=['POST'])
