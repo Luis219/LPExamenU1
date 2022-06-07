@@ -14,20 +14,29 @@
 <body>
     <center>
         <br>
+        <h1>Call Center</h1>
         <br>
     <form>
         
         <div class="col-sm-10 bg-danger text-white">
             <br>
-          <div class="col">
-            <input type="text" class="form-control" placeholder="First name">
-          </div>
-          <br>
-          <br>
-
-          <div class="col">
-            <input type="text" class="form-control" placeholder="Last name">
-          </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1"> N llamada</label>
+                <input type="text" class="form-control" name="numero_llamada" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1"> Placa vehiculo</label>
+                <input type="number" class="form-control" name="placa" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1"> Fecha</label>
+                <input type="number" class="form-control" name="fecha" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1"> Hora</label>
+                <input type="number" class="form-control" name="hora" id="exampleFormControlInput1" placeholder="">
+            </div>
+        
           <br>
           <br>
           <div class="col-sm-10">
@@ -36,7 +45,55 @@
         </div>
 
       </form>
+      <br>
+      <br>
+      
+    
+
     </center>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">N. Llamada</th>
+            <th scope="col">Placa</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Prediccion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><u>
+                {%for llamada in nllamadas %}
+                <li>{{llamada}}</li>
+                {%endfor%}
+            </u></th>
+            <td>
+                <u>
+                    {%for placa in placas%}
+                    <li>{{placa}}</li>
+                    {%endfor%}
+                </u>
+            </td>
+            <td><u>
+                {%for fecha in fechas%}
+                <li>{{fecha}}</li>
+                {%endfor%}
+            </u></td>
+            <td><u>
+                {%for hora in horas%}
+                <li>{{hora}}</li>
+                {%endfor%}
+            </u></td>
+            <td><u>
+                {%for prediccion in predicciones%}
+                <li>{{prediccion}}</li>
+                {%endfor%}
+            </u></td>
+          </tr>
+          
+        </tbody>
+      </table>
     
 </body>
 </html>
